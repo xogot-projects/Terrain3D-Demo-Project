@@ -7,3 +7,11 @@ This repository contains just the sample project to make it easy to include a wo
 For documentation, updates, and more information, visit the [main Terrain3D project](https://github.com/TokisanGames/Terrain3D).
 
 See [LICENSE.txt](LICENSE.txt) for the original MIT license and copyright notice.
+
+## Xogot Learning Center package
+
+This sample targets Godot 4.7 and pairs the Terrain3D 1.0.2 stable editor add-on with its official native libraries, matching Xogot's bundled iPad extension. The unreleased 1.1 ocean effect is omitted; the terrain, foliage, tunnel, player, and navigation examples remain.
+
+Tagged packages include the verified native libraries and imported project assets. When cloning the source, run `python3 .github/scripts/prepare_terrain.py` before opening the project. The command verifies the pinned upstream archive SHA-256. iPad uses Xogot's bundled native extension.
+
+The main demo uses GDScript and needs no .NET component. Optional upstream C# reference code and project templates are under `demo/csharp`.

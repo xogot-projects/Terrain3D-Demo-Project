@@ -1,0 +1,1 @@
+These optional upstream C# examples and generated bindings are reference material. The Learning Center demo uses GDScript and requires no .NET component. The project templates have an `.example` suffix so opening the sample does not activate a managed runtime.

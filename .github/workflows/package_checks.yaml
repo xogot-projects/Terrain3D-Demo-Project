@@ -1,0 +1,14 @@
+name: Packaging checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate uploader and package configuration
+        run: |
+          bash -n .github/scripts/build.sh
+          python3 -m py_compile .github/scripts/package_sample.py
+          python3 -m json.tool .github/sample.json > /dev/null
