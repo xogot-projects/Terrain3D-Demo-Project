@@ -1,0 +1,7 @@
+{
+  "title": "Terrain3D Demo",
+  "description": "Explore editable 3D terrain, painted textures, foliage, collisions, and navigation using Terrain3D 1.0.2, the native version supported by Xogot on iPad. Includes the desktop native libraries.",
+  "cost": "MIT",
+  "categoryId": 10,
+  "supportLevel": 1
+}

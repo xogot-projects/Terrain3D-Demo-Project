@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://chol2xlfbq7cu"]
+[gd_scene load_steps=9 format=3 uid="uid://chol2xlfbq7cu"]
 
 [ext_resource type="Script" uid="uid://chstoagn42gbr" path="res://demo/src/DemoScene.gd" id="1_k7qca"]
 [ext_resource type="PackedScene" uid="uid://d2jihfohphuue" path="res://demo/components/UI.tscn" id="2_nqak5"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://domhm87hbhbg1" path="res://demo/components/Player.tscn" id="3_ht63y"]
 [ext_resource type="PackedScene" uid="uid://djhl3foqkj4e2" path="res://demo/components/Tunnel.tscn" id="3_kdh0b"]
 [ext_resource type="Terrain3DMaterial" uid="uid://ccvn15t8km0ft" path="res://demo/data/M_terrain.tres" id="5_fwrtk"]
-[ext_resource type="Material" uid="uid://cgk4glwmc4vk2" path="res://addons/terrain_3d/extras/shaders/M_ocean.tres" id="7_fwrtk"]
 [ext_resource type="PackedScene" uid="uid://d3sr0a7dxfkr8" path="res://addons/terrain_3d/extras/particle_example/Terrain3DParticles.tscn" id="8_fwrtk"]
 [ext_resource type="Terrain3DAssets" uid="uid://dal3jhw6241qg" path="res://demo/data/assets.tres" id="8_g2of2"]
 
@@ -36,8 +35,6 @@ clipmap_target = NodePath("../Player")
 tessellation_level = 3
 mesh_size = 96
 cull_margin = 450.0
-ocean_enabled = true
-ocean_material = ExtResource("7_fwrtk")
 top_level = true
 metadata/_edit_lock_ = true
 

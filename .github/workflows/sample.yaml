@@ -1,0 +1,42 @@
+name: Package Learning Center sample
+on:
+  push:
+    tags: ['4.7.*']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: macos-14
+    env:
+      uploadUrl: ${{ secrets.uploadUrl }}
+      apiKey: ${{ secrets.apiKey }}
+      GODOT_VERSION: '4.7.2'
+      XOGOT_ASSET_ID: ${{ vars.XOGOT_ASSET_ID }}
+      GODOT_ASSET_ID: '0'
+      version: ${{ github.ref_name }}
+      TAGS: 3d,terrain
+      ICON_URL: ''
+      EXTRA_ARGS: ''
+      ZIPCOMMAND: python3 .github/scripts/package_sample.py
+    steps:
+      - uses: actions/checkout@v4
+      - uses: chickensoft-games/setup-godot@v2
+        with:
+          version: '4.7.2'
+          use-dotnet: false
+          include-templates: false
+      - name: Verify uploader syntax
+        run: bash -n .github/scripts/build.sh
+      - name: Fetch verified Terrain3D native libraries
+        run: python3 .github/scripts/prepare_terrain.py
+      - name: Import, package, and publish
+        run: bash .github/scripts/build.sh
+      - name: Save public upload receipt and checksum
+        uses: actions/upload-artifact@v4
+        with:
+          name: sample-upload-receipt
+          path: |
+            upload-result.json
+            build.zip.sha256
+          if-no-files-found: error
