@@ -28,7 +28,10 @@ extends CharacterBody3D
 
 func _physics_process(p_delta) -> void:
 	var direction: Vector3 = get_camera_relative_input()
-	var h_veloc: Vector2 = Vector2(direction.x, direction.z).normalized() * MOVE_SPEED
+	var strength := Input.get_vector("move_left", "move_right", "move_forward", "move_back").length()
+	var h_veloc: Vector2 = Vector2(direction.x, direction.z).normalized() * MOVE_SPEED * strength
+	if (Input.is_action_just_released("move_up") or Input.is_action_just_released("move_down")) and not Input.is_action_pressed("move_up") and not Input.is_action_pressed("move_down"):
+		velocity.y = 0
 	if Input.is_key_pressed(KEY_SHIFT):
 		h_veloc *= 2
 	velocity.x = h_veloc.x
@@ -43,18 +46,11 @@ func _physics_process(p_delta) -> void:
 
 # Returns the input vector relative to the camera. Forward is always the direction the camera is facing
 func get_camera_relative_input() -> Vector3:
-	var input_dir: Vector3 = Vector3.ZERO
-	if Input.is_key_pressed(KEY_A): # Left
-		input_dir -= %Camera3D.global_transform.basis.x
-	if Input.is_key_pressed(KEY_D): # Right
-		input_dir += %Camera3D.global_transform.basis.x
-	if Input.is_key_pressed(KEY_W): # Forward
-		input_dir -= %Camera3D.global_transform.basis.z
-	if Input.is_key_pressed(KEY_S): # Backward
-		input_dir += %Camera3D.global_transform.basis.z
-	if Input.is_key_pressed(KEY_E) or Input.is_key_pressed(KEY_SPACE): # Up
+	var movement := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	var input_dir: Vector3 = %Camera3D.global_transform.basis * Vector3(movement.x, 0, movement.y)
+	if Input.is_action_pressed("move_up"):
 		velocity.y += JUMP_SPEED + MOVE_SPEED*.016
-	if Input.is_key_pressed(KEY_Q): # Down
+	if Input.is_action_pressed("move_down"):
 		velocity.y -= JUMP_SPEED + MOVE_SPEED*.016
 	if Input.is_key_pressed(KEY_KP_ADD) or Input.is_key_pressed(KEY_EQUAL):
 		MOVE_SPEED = clamp(MOVE_SPEED + .5, 5, 9999)
@@ -78,7 +74,3 @@ func _input(p_event: InputEvent) -> void:
 				gravity_enabled = ! gravity_enabled
 			elif p_event.keycode == KEY_C:
 				collision_enabled = ! collision_enabled
-
-		# Else if up/down released
-		elif p_event.keycode in [ KEY_Q, KEY_E, KEY_SPACE ]:
-			velocity.y = 0

@@ -17,6 +17,8 @@ func _process(_p_delta: float) -> void:
 		$Label.text += """
 			Player
 			Move: WASDEQ,Space,Mouse
+			Controller: left stick move, right stick look
+			A: rise / jump, B: descend
 			Move speed: Wheel,+/-,Shift
 			Camera View: V
 			Gravity toggle: G

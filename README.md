@@ -15,3 +15,7 @@ This sample targets Godot 4.7 and pairs the Terrain3D 1.0.2 stable editor add-on
 Tagged packages include the verified native libraries and imported project assets. When cloning the source, run `python3 .github/scripts/prepare_terrain.py` before opening the project. The command verifies the pinned upstream archive SHA-256. iPad uses Xogot's bundled native extension.
 
 The main demo uses GDScript and needs no .NET component. Optional upstream C# reference code and project templates are under `demo/csharp`.
+
+## Touch and controller controls
+
+Xogot’s iOS virtual controller is enabled. Use the left stick for WASD movement and the right stick to look. A rises/jumps (E or Space), and B descends (Q). The unused X/Y virtual buttons are disabled. Bluetooth controllers use the same bindings. Keyboard/mouse controls and the V/G/C toggles remain available.

@@ -15,6 +15,13 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
+func _process(delta: float) -> void:
+	var stick := Input.get_vector("look_left", "look_right", "look_up", "look_down")
+	# Match mouse pitch limits while turning at up to 2.5 radians per second.
+	_camera_yaw.rotation.y -= stick.x * 2.5 * delta
+	_camera_pitch.rotation.x = clampf(_camera_pitch.rotation.x - stick.y * 2.5 * CAMERA_RATIO * delta, CAMERA_MIN_PITCH, CAMERA_MAX_PITCH)
+
+
 func _input(p_event: InputEvent) -> void:
 	if p_event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_camera(p_event.relative)
