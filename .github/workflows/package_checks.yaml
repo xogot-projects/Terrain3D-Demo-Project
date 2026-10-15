@@ -12,3 +12,5 @@ jobs:
           bash -n .github/scripts/build.sh
           python3 -m py_compile .github/scripts/package_sample.py
           python3 -m json.tool .github/sample.json > /dev/null
+      - name: Verify shared texture cache packaging
+        run: python3 -m unittest discover -s .github/scripts -p "test_*.py"
